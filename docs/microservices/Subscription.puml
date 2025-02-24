@@ -1,0 +1,19 @@
+@startuml name: "Subscription"
+entity Subscription {
+  +Id : Guid [PK]
+  +UserId : Guid
+  +PlanId : Guid [FK -> Plan.Id]
+  +Status : string (Active/Expired/Canceled)
+  +StartDate : DateTime
+  +EndDate : DateTime
+}
+
+entity Plan {
+  +Id : Guid [PK]
+  +Name : string
+  +StripePriceId : string
+  +BillingCycle : string (Monthly/Yearly)
+  +Price : decimal
+  +MaxLicenses : int
+}
+@enduml

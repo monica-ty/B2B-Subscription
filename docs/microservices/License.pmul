@@ -1,0 +1,10 @@
+@startuml
+entity License {
+  +Id : Guid [PK]
+  +SubscriptionId : Guid
+  +Key : string [Unique]
+  +UserId : Guid
+  +Status : string (Active/Revoked)
+  +CreatedAt : DateTime
+}
+@enduml

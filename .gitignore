@@ -1,0 +1,61 @@
+# Compiled Binaries
+bin/
+obj/
+
+# Build Artifacts
+*.dll
+*.exe
+*.pdb
+*.cache
+*.so
+*.dylib
+*.swp
+*.log
+
+# User-Specific Files
+.vscode/
+*.user
+*.suo
+*.vspscc
+*.vssscc
+*.sln.docstates
+
+# Dependency Folders
+node_modules/
+packages/
+bower_components/
+
+# Environment Files
+.env
+secrets.json
+
+# ASP.NET Runtime Files
+wwwroot/lib/
+wwwroot/dist/
+
+# Database Files
+*.mdf
+*.ldf
+*.db
+*.sqlite
+
+# Entity Framework Migrations
+Migrations/
+
+# Resharper / Rider / Visual Studio Code / VS Config Files
+.idea/
+*.vs/
+*.ncb
+*.opendb
+*.VC.db
+.vscode/
+*.sln.iml
+
+# Docker Files
+docker-compose.override.yml
+
+# NuGet Packages
+*.nupkg
+project.lock.json
+
+appsettings.json

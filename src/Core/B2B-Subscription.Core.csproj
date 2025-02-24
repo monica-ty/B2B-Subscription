@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>B2B_Subscription.Core</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- Core layer contains domain models, interfaces, and business logic -->
+  <ItemGroup>
+    <!-- Domain modeling and validation -->
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    
+    <!-- Identity and Authentication -->
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
+    
+    <!-- Entity Framework Core abstractions -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="8.0.13" />
+    
+  </ItemGroup>
+
+</Project>

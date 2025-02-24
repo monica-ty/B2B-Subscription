@@ -1,0 +1,44 @@
+' Relational Database Schema for the License Management System
+' Not used in the microservice, but useful for understanding the relationships between the tables
+@startuml name: "Database Schema"
+skinparam defaultFontName "Arial"
+!define primary_key(x) <b>x</b>
+!define foreign_key(x) <u>x</u>
+
+entity User {
+    primary_key(Id): int
+    Email: string
+    Role: string
+    CreatedDate: DateTime
+    foreign_key(SubscriptionId): int
+}
+
+entity Subscription {
+    primary_key(Id): int
+    Name: string
+    Price: decimal
+    Duration: int
+    CreatedDate: DateTime
+}
+
+entity License {
+    primary_key(Id): int
+    foreign_key(UserId): int
+    foreign_key(SubscriptionId): int
+    LicenseKey: string
+    AssignedDate: DateTime
+}
+
+entity Payment {
+    primary_key(Id): int
+    foreign_key(SubscriptionId): int
+    Amount: decimal
+    PaymentDate: DateTime
+    Status: string
+}
+
+User }|--|| Subscription : "belongs to"
+Subscription ||--o{ License : "has"
+License }|--|| User : "assigned to"
+Subscription ||--o{ Payment : "has payments"
+@enduml

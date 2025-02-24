@@ -1,0 +1,18 @@
+@startuml name: "User Management"
+entity "AspNetUsers" as User <<Identity>> {
+  +Id : GUID [PK]
+  +Email : string [Unique]
+  +PasswordHash : string
+  +StripeCustomerId : string [Unique]
+  +Role : string
+  +CreatedAt : DateTime
+}
+
+entity UserProfile {
+  +Id : GUID [PK]
+  +UserId : GUID [FK -> AspNetUsers.Id]
+  +FullName : string
+  +Company : string
+  +PhoneNumber : string
+}
+@enduml
