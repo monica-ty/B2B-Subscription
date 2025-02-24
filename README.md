@@ -43,8 +43,8 @@ src/
 1. **Clone Repository**
 
 ```bash
-git clone https://github.com/yourusername/b2b-subscription-system.git
-cd b2b-subscription-system
+git clone https://github.com/monica-ty/B2B-Subscription.git
+cd B2B-Subscription
 ```
 
 2. **Configure Databases**
@@ -54,10 +54,10 @@ Update connection strings in `appsettings.json`:
 ```json
 {
   "ConnectionStrings": {
-    "UserConnection": "Server=localhost;Database=UserDB;...",
-    "SubscriptionConnection": "Server=localhost;Database=SubscriptionDB;...",
-    "PaymentConnection": "Server=localhost;Database=PaymentDB;...",
-    "LicenseConnection": "Server=localhost;Database=LicenseDB;..."
+    "UserConnection": "Server=...;Database=UserDB;...",
+    "SubscriptionConnection": "Server=...;Database=SubscriptionDB;...",
+    "PaymentConnection": "Server=...;Database=PaymentDB;...",
+    "LicenseConnection": "Server=...;Database=LicenseDB;..."
   }
 }
 ```
