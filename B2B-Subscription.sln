@@ -1,37 +1,41 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.2.0
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-
-# API Project
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B2B-Subscription.API", "src\API\B2B-Subscription.API.csproj", "{32E1BB6A-3C4B-572E-8E03-97E47E94B0FB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{90BBA96C-4FC9-4D97-872C-2259C01A4A30}"
 EndProject
-
-# Core Project
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B2B-Subscription.Core", "src\Core\B2B-Subscription.Core.csproj", "{YOUR-CORE-GUID}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B2B-Subscription.API", "src\API\B2B-Subscription.API.csproj", "{6B0CCCF5-CB2D-452C-B7A6-3525621FCFC1}"
 EndProject
-
-# Infrastructure Project
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B2B-Subscription.Infrastructure", "src\Infrastructure\B2B-Subscription.Infrastructure.csproj", "{YOUR-INFRASTRUCTURE-GUID}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B2B-Subscription.Core", "src\Core\B2B-Subscription.Core.csproj", "{2BAAFCF6-6200-4F6D-96C7-36A7EF76EFCF}"
 EndProject
-
-# Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B2B-Subscription", "B2B-Subscription.csproj", "{32E1BB6A-3C4B-572E-8E03-97E47E94B0FB}"
-# EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B2B-Subscription.Infrastructure", "src\Infrastructure\B2B-Subscription.Infrastructure.csproj", "{C02D27B2-24CB-4F04-8278-EA025AD8B07D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{32E1BB6A-3C4B-572E-8E03-97E47E94B0FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32E1BB6A-3C4B-572E-8E03-97E47E94B0FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32E1BB6A-3C4B-572E-8E03-97E47E94B0FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32E1BB6A-3C4B-572E-8E03-97E47E94B0FB}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0C8A7B73-D29D-465D-9444-2535AE4479F8}
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B0CCCF5-CB2D-452C-B7A6-3525621FCFC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B0CCCF5-CB2D-452C-B7A6-3525621FCFC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B0CCCF5-CB2D-452C-B7A6-3525621FCFC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B0CCCF5-CB2D-452C-B7A6-3525621FCFC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BAAFCF6-6200-4F6D-96C7-36A7EF76EFCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BAAFCF6-6200-4F6D-96C7-36A7EF76EFCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BAAFCF6-6200-4F6D-96C7-36A7EF76EFCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BAAFCF6-6200-4F6D-96C7-36A7EF76EFCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C02D27B2-24CB-4F04-8278-EA025AD8B07D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C02D27B2-24CB-4F04-8278-EA025AD8B07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C02D27B2-24CB-4F04-8278-EA025AD8B07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C02D27B2-24CB-4F04-8278-EA025AD8B07D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6B0CCCF5-CB2D-452C-B7A6-3525621FCFC1} = {90BBA96C-4FC9-4D97-872C-2259C01A4A30}
+		{2BAAFCF6-6200-4F6D-96C7-36A7EF76EFCF} = {90BBA96C-4FC9-4D97-872C-2259C01A4A30}
+		{C02D27B2-24CB-4F04-8278-EA025AD8B07D} = {90BBA96C-4FC9-4D97-872C-2259C01A4A30}
 	EndGlobalSection
 EndGlobal
