@@ -19,7 +19,8 @@
 
     <!-- Identity and Authentication -->
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
-    
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="6.1.0" />
+
     <!-- Common infrastructure packages -->
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />

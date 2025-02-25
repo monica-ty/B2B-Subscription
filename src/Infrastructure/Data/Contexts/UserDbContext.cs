@@ -18,6 +18,7 @@ namespace B2B_Subscription.Infrastructure.Data.Contexts
             // Add any additional configurations here
             modelBuilder.ApplyConfiguration(new UserProfileConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
+            modelBuilder.UseOpenIddict();
         }
     }
 } 

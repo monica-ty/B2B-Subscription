@@ -12,8 +12,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.13" />
+    <PackageReference Include="OpenIddict.AspNetCore" Version="6.1.0" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="6.1.0" />
+    <PackageReference Include="OpenIddict.Server" Version="6.1.0" />
+    <PackageReference Include="OpenIddict.Validation.AspNetCore" Version="6.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.13" />
   </ItemGroup>
 </Project> 
