@@ -9,6 +9,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using OpenIddict.Validation.AspNetCore;
+using B2B_Subscription.Infrastructure.Data.Repositories.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +34,8 @@ builder.Services.AddDbContext<LicenseDbContext>(options =>
 // API Documentation
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 
 // Identity Configuration (if using authentication)
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -81,18 +86,9 @@ builder.Services.AddOpenIddict()
     
 // Authentication Configuration
 builder.Services.AddAuthentication(options => {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-    .AddJwtBearer(options => {
-        options.Authority = "https://localhost:7043";
-        options.Audience = "api.read";
-        options.TokenValidationParameters = new TokenValidationParameters {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            
-        };
-    });
+    options.DefaultAuthenticateScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
+});
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
