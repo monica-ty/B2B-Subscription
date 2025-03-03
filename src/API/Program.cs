@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using OpenIddict.Validation.AspNetCore;
 using B2B_Subscription.Infrastructure.Data.Repositories.User;
+using B2B_Subscription.Infrastructure.Data.Repositories.Subscription;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+builder.Services.AddScoped<IPlanRepository, PlanRepository>();
 
 // Identity Configuration (if using authentication)
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
