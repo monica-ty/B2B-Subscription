@@ -23,7 +23,15 @@ namespace B2B_Subscription.API.Controllers
         public async Task<IActionResult> GetAllPlans()
         {
             var plans = await _planRepository.GetAllPlansAsync();
-            return Ok(plans);
+            var response = plans.Select(p => new
+            {
+                p.Id,
+                p.Name,
+                p.BillingCycle,
+                p.Price,
+                p.MaxLicenses
+            });
+            return Ok(response);
         }
         
         [HttpGet("{id}")]
@@ -32,7 +40,27 @@ namespace B2B_Subscription.API.Controllers
             var plan = await _planRepository.GetPlanByIdAsync(id);
             if (plan == null)
                 return NotFound();
-            return Ok(plan);
+
+            var response = new
+            {
+                plan.Id,
+                plan.Name,
+                plan.BillingCycle,
+                plan.Price,
+                plan.MaxLicenses
+            };
+            return Ok(response);
+        }
+
+        [HttpGet("price/{id}")]
+        public async Task<IActionResult> GetPlanPrice(Guid id)
+        {
+            var plan = await _planRepository.GetPlanByIdAsync(id);
+            var response = new
+            {
+                plan.StripePriceId
+            };
+            return Ok(response);
         }
 
         [HttpPost]

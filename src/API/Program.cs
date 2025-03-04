@@ -13,6 +13,8 @@ using Newtonsoft.Json;
 using OpenIddict.Validation.AspNetCore;
 using B2B_Subscription.Infrastructure.Data.Repositories.User;
 using B2B_Subscription.Infrastructure.Data.Repositories.Subscription;
+using B2B_Subscription.Infrastructure.Data.Repositories.Payment;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +40,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 builder.Services.AddScoped<IPlanRepository, PlanRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 
 // Identity Configuration (if using authentication)
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -94,12 +97,16 @@ builder.Services.AddAuthentication(options => {
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
+builder.Services.AddHttpClient();
 
 builder.Services.AddHttpsRedirection(options =>{
     options.HttpsPort = 7043;
 });
 // Add a dummy email sender if you don't have real email functionality yet
 builder.Services.AddTransient<IEmailSender<ApplicationUser>, NoOpEmailSender>();
+
+// Stripe Configuration
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
 var app = builder.Build();
 
