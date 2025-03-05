@@ -9,23 +9,30 @@ using OpenIddict.Server.AspNetCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 using System.Security.Claims;
 using B2B_Subscription.Core.Entities;
+using B2B_Subscription.Infrastructure.Data.Repositories.User;
+using B2B_Subscription.Core.DTOs;
+using Newtonsoft.Json;
 
-[Route("connect")]
-public class AuthorizationController : Controller
+
+public class AuthorizationController : ControllerBase
 {
     // Implement the Resource Owner Password Credentials flow for local development
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IApplicationUserRepository _applicationUserRepository;
 
     public AuthorizationController(
         SignInManager<ApplicationUser> signInManager,
-        UserManager<ApplicationUser> userManager)
+        UserManager<ApplicationUser> userManager,
+        IApplicationUserRepository applicationUserRepository
+    )   
     {
         _signInManager = signInManager;
         _userManager = userManager;
+        _applicationUserRepository = applicationUserRepository;
     }
 
-    [HttpPost("token"), Produces("application/json")]
+    [HttpPost("connect/token"), Produces("application/json")]
     public async Task<IActionResult> Exchange()
     {
         var request = HttpContext.GetOpenIddictServerRequest() ?? throw new InvalidOperationException("The specified grant type is not supported.");
@@ -70,5 +77,42 @@ public class AuthorizationController : Controller
         }
 
         throw new InvalidOperationException("The specified grant type is not supported.");
+    }
+
+    [HttpGet]
+    [Route("/api/stripe-customer-id/{userId}")]
+    public async Task<IActionResult> GetStripeCustomerId(string userId)
+    {
+        var applicationUser = await _applicationUserRepository.GetApplicationUserByIdAsync(userId);
+        if (applicationUser == null)
+        {
+            return NotFound();
+        }
+        return Ok(applicationUser.StripeCustomerId);
+    }
+
+    [HttpPut]
+    [Route("/api/stripe-customer-id/{userId}")]
+    public async Task<IActionResult> UpdateStripeCustomerId(string userId, [FromBody] ApplicationUserDto applicationUserDto)
+    {
+        Console.WriteLine("Updating stripe customer id for user {0}", userId);
+
+        if (applicationUserDto == null)
+        {
+            Console.WriteLine("ApplicationUserDto is null");
+            return BadRequest("Request body is required");
+        }
+        
+        Console.WriteLine("Received DTO: {0}", JsonConvert.SerializeObject(applicationUserDto));
+        Console.WriteLine("Stripe customer id: {0}", applicationUserDto.StripeCustomerId ?? "null");
+    
+        var applicationUser = await _applicationUserRepository.GetApplicationUserByIdAsync(userId);
+        if (applicationUser == null)
+        {
+            return NotFound();
+        }
+        applicationUser.StripeCustomerId = applicationUserDto.StripeCustomerId;
+        await _applicationUserRepository.UpdateApplicationUserAsync(applicationUser);
+        return Ok();
     }
 }

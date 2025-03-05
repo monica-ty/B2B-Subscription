@@ -6,6 +6,7 @@ namespace B2B_Subscription.Infrastructure.Data.Repositories.Payment
     {
         Task<PaymentEntity> CreatePaymentAsync(PaymentEntity payment);
         Task<IEnumerable<PaymentEntity>> GetPaymentsByUserIdAsync(string userId);
-
+        Task<PaymentEntity> GetPaymentByStripeSessionIdAsync(string stripeSessionId);
+        Task<PaymentEntity> UpdatePaymentAsync(PaymentEntity payment);
     }
 }

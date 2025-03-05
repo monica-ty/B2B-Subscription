@@ -8,8 +8,9 @@ namespace B2B_Subscription.Core.Entities
         public Guid Id { get; set; }
         [Required]
         public string UserId { get; set; } = string.Empty;
-        [Required   ]
-        public string StripePaymentIntentId { get; set; } = string.Empty;
+        [Required]
+        public string StripeSessionId { get; set; } = string.Empty;
+        public string? StripePaymentIntentId { get; set; }
         [Required]
         public decimal Amount { get; set; }
         [Required]

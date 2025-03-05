@@ -1,16 +1,23 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using B2B_Subscription.Core.Entities;
+using PaymentEntity = B2B_Subscription.Core.Entities.Payment;
 
 namespace B2B_Subscription.Infrastructure.Data.Configurations
 {
     // Configuration class for Payment entity
-    public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
+    public class PaymentConfiguration : IEntityTypeConfiguration<PaymentEntity>
     {
-        public void Configure(EntityTypeBuilder<Payment> builder)
+        public void Configure(EntityTypeBuilder<PaymentEntity> builder)
         {
             // Configure primary key
             builder.HasKey(p => p.Id);
+
+            // StripeSessionId is required and must be unique
+            builder.Property(p => p.StripeSessionId)
+                .IsRequired()
+                .HasMaxLength(100)
+                .IsUnicode(false); // Stripe IDs are ASCII
 
             // UserId is required and must be a valid Guid
             builder.Property(p => p.UserId)
@@ -19,7 +26,7 @@ namespace B2B_Subscription.Infrastructure.Data.Configurations
 
             // Configure properties
             builder.Property(p => p.StripePaymentIntentId)
-                .IsRequired()
+                .IsRequired(false)
                 .HasMaxLength(50)
                 .IsUnicode(false); // Stripe IDs are ASCII
 
@@ -34,9 +41,13 @@ namespace B2B_Subscription.Infrastructure.Data.Configurations
                 .IsRequired()
                 .HasDefaultValueSql("GETDATE()");
 
+            // Ensure StripeSessionId is unique
+            builder.HasIndex(p => p.StripeSessionId)
+                .IsUnique();
             // Ensure StripePaymentIntentId is unique
             builder.HasIndex(p => p.StripePaymentIntentId)
-                .IsUnique();
+                .IsUnique()
+                .HasFilter("[StripePaymentIntentId] IS NOT NULL");
         }
     }
 

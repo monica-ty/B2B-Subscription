@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using B2B_Subscription.Core.Entities;
+using PaymentEntity = B2B_Subscription.Core.Entities.Payment;
 using B2B_Subscription.Infrastructure.Data.Configurations;
 
 namespace B2B_Subscription.Infrastructure.Data.Contexts
@@ -9,7 +10,7 @@ namespace B2B_Subscription.Infrastructure.Data.Contexts
         public PaymentDbContext(DbContextOptions<PaymentDbContext> options) 
             : base(options) { }
 
-        public DbSet<Payment> Payments { get; set; }
+        public DbSet<PaymentEntity> Payments { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -41,6 +41,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 builder.Services.AddScoped<IPlanRepository, PlanRepository>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
 
 // Identity Configuration (if using authentication)
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
