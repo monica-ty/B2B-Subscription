@@ -85,16 +85,12 @@ namespace B2B_Subscription.API.Controllers
             
             if (existingProfile == null)
                 return NotFound();
-                
-            var userProfile = new UserProfile{
-                Id = existingProfile.Id,
-                UserId = userId,
-                FullName = updateDto.FullName ?? existingProfile.FullName,
-                Company = updateDto.Company ?? existingProfile.Company,
-                PhoneNumber = updateDto.PhoneNumber ?? existingProfile.PhoneNumber
-            };
 
-            await _userProfileRepository.UpdateUserProfileAsync(userProfile);
+            existingProfile.FullName = updateDto.FullName ?? existingProfile.FullName;
+            existingProfile.Company = updateDto.Company ?? existingProfile.Company;
+            existingProfile.PhoneNumber = updateDto.PhoneNumber ?? existingProfile.PhoneNumber;
+
+            await _userProfileRepository.UpdateUserProfileAsync(existingProfile);
             return NoContent();
         }
 
