@@ -88,7 +88,10 @@ public class AuthorizationController : ControllerBase
         {
             return NotFound();
         }
-        return Ok(applicationUser.StripeCustomerId);
+        var response = new {
+            applicationUser.StripeCustomerId
+        };
+        return Ok(response);
     }
 
     [HttpPut]

@@ -75,7 +75,8 @@ namespace B2B_Subscription.API.Controllers
             string? stripeCustomerId = null;
             if (userResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                stripeCustomerId = await userResponse.Content.ReadFromJsonAsync<string>();
+                var applicationUserDto = await userResponse.Content.ReadFromJsonAsync<ApplicationUserDto>();
+                stripeCustomerId = applicationUserDto?.StripeCustomerId;
             }
             Console.WriteLine("Stripe customer id: {0}", stripeCustomerId);
             
@@ -140,8 +141,7 @@ namespace B2B_Subscription.API.Controllers
             {
                 var signatureHeader = Request.Headers["Stripe-Signature"];
 
-                var stripeEvent = EventUtility.ConstructEvent(json,
-                    signatureHeader, secret);
+                var stripeEvent = EventUtility.ConstructEvent(json, signatureHeader, secret);
                 
                 if (stripeEvent.Type == EventTypes.PaymentIntentSucceeded){
                     var paymentIntent = stripeEvent.Data.Object as PaymentIntent;
